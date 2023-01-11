@@ -33,6 +33,21 @@ Some useful build options:
 - `--target <target>` - specific target, "all" is default.
 -	`--config <Release|Debug>` - build configuration, applicable only for multi-config generators such as Visual Studio generator.
 
+## Build oneTBB with emscripten
+
+To build the system, run:
+```
+emcmake cmake -DCMAKE_CXX_COMPILER=em++ -DCMAKE_C_COMPILER=emcc -DTBB_STRICT=OFF -DCMAKE_CXX_FLAGS=-Wno-unused-command-line-argument -DTBB_DISABLE_HWLOC_AUTOMATIC_SEARCH=ON
+cmake --build . <options>
+cmake --install . <options>
+To run the tests
+ctest
+```
+To manually run the tests:
+```
+em++ -D__TBB_SOURCE_DIRECTLY_INCLUDED=1 -I<include> -pthread -O2 -g -DNDEBUG -fPIE -Wall -Wextra -Wshadow -Wcast-qual -Woverloaded-virtual -Wnon-virtual-dtor -std=c++11 -o <test_file>.o -c <test_file>.cpp
+em++ -Wno-unused-command-line-argument -pthread -s TOTAL_MEMORY=128MB -s EXIT_RUNTIME=1 -s PROXY_TO_PTHREAD=1 -O2 -g -DNDEBUG -pthread -rdynamic <test_file>.o -o <test_file>.js libtbb.a -ldl
+node --experimental-wasm-threads --experimental-wasm-bulk-memory <test_file>.js
 
 ## Install and Pack oneTBB
 
