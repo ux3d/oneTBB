@@ -60,3 +60,4 @@ CMakeSettings.json
 .tags
 .ctags
 
+.DS_Store

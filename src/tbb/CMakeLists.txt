@@ -44,6 +44,9 @@ add_library(tbb
 
 add_library(TBB::tbb ALIAS tbb)
 
+
+make_framework(TARGET tbb VERSION ${_tbb_version_info} IDENTIFIER io.oneAPI.oneTBB)
+
 if (WIN32)
     target_sources(tbb PRIVATE tbb.rc)
     set_target_properties(tbb PROPERTIES OUTPUT_NAME "tbb${TBB_BINARY_VERSION}")

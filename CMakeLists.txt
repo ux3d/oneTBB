@@ -58,6 +58,7 @@ project(TBB VERSION ${_tbb_ver_major}.${_tbb_ver_minor}.${_tbb_ver_patch} LANGUA
 unset(_tbb_ver_major)
 unset(_tbb_ver_minor)
 
+include(cmake/apple.cmake)
 include(CheckCXXCompilerFlag)
 include(GNUInstallDirs)
 include(CMakeDependentOption)

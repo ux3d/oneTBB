@@ -25,6 +25,9 @@ endmacro()
 macro(tbb_install_target target)
     install(TARGETS ${target}
         EXPORT TBBTargets
+        FRAMEWORK 
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            COMPONENT runtime
         LIBRARY
             DESTINATION ${CMAKE_INSTALL_LIBDIR}
             NAMELINK_SKIP
